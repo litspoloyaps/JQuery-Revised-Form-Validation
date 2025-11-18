@@ -73,14 +73,12 @@ $(document).ready(function () {
     }
   }
 
-  // REAL-TIME VALIDATION
   $("#name").keyup(validateName).blur(validateName);
   $("#email").keyup(validateEmail).blur(validateEmail);
   $("#phone").keyup(validatePhone).blur(validatePhone);
   $("#password").keyup(validatePassword).blur(validatePassword);
   $("#confirmPassword").keyup(validateConfirmPassword).blur(validateConfirmPassword);
 
-  // FORM SUBMIT
   $("#regForm").submit(function (e) {
     e.preventDefault();
 
