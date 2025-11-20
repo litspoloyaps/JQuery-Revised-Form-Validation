@@ -1,75 +1,107 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #74b9ff, #6c5ce7);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.container {
-  width: 350px;
-  margin: 60px auto;
-  padding: 25px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px #aaa;
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 20px;
 }
 
-h2 {
+.card {
+  width: 380px;
+  background: #ffffffdd;
+  backdrop-filter: blur(8px);
+  padding: 30px 35px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+.card h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #333;
 }
 
 .input-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .input-group label {
-  display: block;
-  margin-bottom: 6px;
+  font-size: 15px;
+  color: #444;
+  font-weight: 600;
 }
 
 .input-group input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.error {
-  color: red;
-  font-size: 13px;
-  margin-top: 3px;
-  display: block;
-}
-
-button {
-  width: 100%;
   padding: 12px;
-  background: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: 0.25s;
+  font-size: 15px;
+  background: #fafafa;
 }
 
-footer {
-  margin-top: 40px;
-  padding: 15px;
-  text-align: center;
-  background: transparent;
-  color: #333;
-  font-size: 14px;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+.input-group input:focus {
+  border-color: #6c5ce7;
+  box-shadow: 0 0 6px #a29bfe;
 }
 
-footer p {
-  margin: 0;
+small {
+  color: red;
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  min-height: 16px;
 }
 
 input.error {
-  border: 2px solid red;
+  border: 2px solid #e74c3c !important;
 }
 
 input.success {
-  border: 2px solid green;
+  border: 2px solid #2ecc71 !important;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  background: #6c5ce7;
+  border: none;
+  color: white;
+  font-size: 17px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: #4b36d4;
+  transform: translateY(-3px);
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
