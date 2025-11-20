@@ -1,87 +1,81 @@
 $(document).ready(function () {
 
-  function validateName() {
-    let name = $("#name").val().trim();
+  function setError(input, message) {
+    input.addClass("error").removeClass("success");
+    input.next("small").text(message);
+  }
 
+  function setSuccess(input) {
+    input.addClass("success").removeClass("error");
+    input.next("small").text("");
+  }
+
+  function validateName() {
+    const input = $("#name");
+    const name = input.val().trim();
     if (name === "") {
-      $("#name").addClass("error").removeClass("success");
-      $("#name").next("small").text("Name is required");
+      setError(input, "Name is required");
       return false;
-    } else {
-      $("#name").addClass("success").removeClass("error");
-      $("#name").next("small").text("");
-      return true;
     }
+    setSuccess(input);
+    return true;
   }
 
   function validateEmail() {
-    let email = $("#email").val().trim();
-    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-
+    const input = $("#email");
+    const email = input.val().trim();
+    const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     if (!pattern.test(email)) {
-      $("#email").addClass("error").removeClass("success");
-      $("#email").next("small").text("Enter a valid email");
+      setError(input, "Enter a valid email");
       return false;
-    } else {
-      $("#email").addClass("success").removeClass("error");
-      $("#email").next("small").text("");
-      return true;
     }
+    setSuccess(input);
+    return true;
   }
 
   function validatePhone() {
-    let phone = $("#phone").val().trim();
-    let pattern = /^[0-9]{11}$/;
-
+    const input = $("#phone");
+    const phone = input.val().trim();
+    const pattern = /^[0-9]{11}$/;
     if (!pattern.test(phone)) {
-      $("#phone").addClass("error").removeClass("success");
-      $("#phone").next("small").text("Enter an 11-digit phone number");
+      setError(input, "Enter an 11-digit phone number");
       return false;
-    } else {
-      $("#phone").addClass("success").removeClass("error");
-      $("#phone").next("small").text("");
-      return true;
     }
+    setSuccess(input);
+    return true;
   }
 
   function validatePassword() {
-    let pass = $("#password").val();
-
+    const input = $("#password");
+    const pass = input.val();
     if (pass.length < 6) {
-      $("#password").addClass("error").removeClass("success");
-      $("#password").next("small").text("Password must be at least 6 characters");
+      setError(input, "Password must be at least 6 characters");
       return false;
-    } else {
-      $("#password").addClass("success").removeClass("error");
-      $("#password").next("small").text("");
-      return true;
     }
+    setSuccess(input);
+    return true;
   }
 
   function validateConfirmPassword() {
-    let pass = $("#password").val();
-    let confirm = $("#confirmPassword").val();
-
+    const input = $("#confirmPassword");
+    const pass = $("#password").val();
+    const confirm = input.val();
     if (pass !== confirm || confirm === "") {
-      $("#confirmPassword").addClass("error").removeClass("success");
-      $("#confirmPassword").next("small").text("Passwords do not match");
+      setError(input, "Passwords do not match");
       return false;
-    } else {
-      $("#confirmPassword").addClass("success").removeClass("error");
-      $("#confirmPassword").next("small").text("");
-      return true;
     }
+    setSuccess(input);
+    return true;
   }
 
-  $("#name").keyup(validateName).blur(validateName);
-  $("#email").keyup(validateEmail).blur(validateEmail);
-  $("#phone").keyup(validatePhone).blur(validatePhone);
-  $("#password").keyup(validatePassword).blur(validatePassword);
-  $("#confirmPassword").keyup(validateConfirmPassword).blur(validateConfirmPassword);
+  $("#name").on("keyup blur", validateName);
+  $("#email").on("keyup blur", validateEmail);
+  $("#phone").on("keyup blur", validatePhone);
+  $("#password").on("keyup blur", validatePassword);
+  $("#confirmPassword").on("keyup blur", validateConfirmPassword);
 
   $("#regForm").submit(function (e) {
     e.preventDefault();
-
     if (
       validateName() &&
       validateEmail() &&
@@ -90,7 +84,7 @@ $(document).ready(function () {
       validateConfirmPassword()
     ) {
       alert("Registration Successful!");
-      $("#regForm")[0].reset();
+      this.reset();
       $("input").removeClass("success error");
       $("small").text("");
     }
