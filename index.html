@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JQuery Revised Form Validation/title>
+  <title>JQuery Revised Form Validation</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
@@ -16,32 +16,32 @@
     <form id="regForm">
 
       <div class="input-group">
-        <label>Full Name</label>
-        <input type="text" id="name" required>
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="fullname" placeholder="Enter your full name" required>
         <small></small>
       </div>
 
       <div class="input-group">
-        <label>Email</label>
-        <input type="email" id="email" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
         <small></small>
       </div>
 
       <div class="input-group">
-        <label>Phone Number</label>
-        <input type="text" id="phone" required>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
         <small></small>
       </div>
 
       <div class="input-group">
-        <label>Password</label>
-        <input type="password" id="password" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
         <small></small>
       </div>
 
       <div class="input-group">
-        <label>Confirm Password</label>
-        <input type="password" id="confirmPassword" required>
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
         <small></small>
       </div>
 
