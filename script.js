@@ -10,7 +10,6 @@ $(document).ready(function () {
     input.next("small").text("");
   }
 
-  // ✅ Full Name only allows LETTERS and SPACES
   $("#name").on("input", function () {
     this.value = this.value.replace(/[^A-Za-z\s.-]/g, '');
   });
