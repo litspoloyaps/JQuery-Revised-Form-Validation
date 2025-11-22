@@ -13,10 +13,17 @@ $(document).ready(function () {
   function validateName() {
     const input = $("#name");
     const name = input.val().trim();
+
     if (name === "") {
       setError(input, "Name is required");
       return false;
     }
+
+    if (name.length < 3) {
+      setError(input, "Name must be at least 3 characters");
+      return false;
+    }
+
     setSuccess(input);
     return true;
   }
@@ -24,23 +31,41 @@ $(document).ready(function () {
   function validateEmail() {
     const input = $("#email");
     const email = input.val().trim();
-    const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (!pattern.test(email)) {
-      setError(input, "Enter a valid email");
+
+    if (email === "") {
+      setError(input, "Email is required");
       return false;
     }
+
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    if (!pattern.test(email)) {
+      setError(input, "Please enter a valid email address");
+      return false;
+    }
+
     setSuccess(input);
     return true;
   }
 
   function validatePhone() {
     const input = $("#phone");
-    const phone = input.val().trim();
+    let phone = input.val().replace(/\s+/g, '');
+
+    input.val(phone);
+
     const pattern = /^[0-9]{11}$/;
-    if (!pattern.test(phone)) {
-      setError(input, "Enter an 11-digit phone number");
+
+    if (phone === "") {
+      setError(input, "Phone number is required");
       return false;
     }
+
+    if (!pattern.test(phone)) {
+      setError(input, "Enter a valid 11-digit phone number");
+      return false;
+    }
+
     setSuccess(input);
     return true;
   }
@@ -48,10 +73,22 @@ $(document).ready(function () {
   function validatePassword() {
     const input = $("#password");
     const pass = input.val();
+
+    if (pass === "") {
+      setError(input, "Password is required");
+      return false;
+    }
+
     if (pass.length < 6) {
       setError(input, "Password must be at least 6 characters");
       return false;
     }
+
+    if (!/[A-Za-z]/.test(pass) || !/[0-9]/.test(pass)) {
+      setError(input, "Password must contain letters and numbers");
+      return false;
+    }
+
     setSuccess(input);
     return true;
   }
@@ -60,10 +97,17 @@ $(document).ready(function () {
     const input = $("#confirmPassword");
     const pass = $("#password").val();
     const confirm = input.val();
-    if (pass !== confirm || confirm === "") {
+
+    if (confirm === "") {
+      setError(input, "Please confirm your password");
+      return false;
+    }
+
+    if (pass !== confirm) {
       setError(input, "Passwords do not match");
       return false;
     }
+
     setSuccess(input);
     return true;
   }
@@ -76,6 +120,7 @@ $(document).ready(function () {
 
   $("#regForm").submit(function (e) {
     e.preventDefault();
+
     if (
       validateName() &&
       validateEmail() &&
